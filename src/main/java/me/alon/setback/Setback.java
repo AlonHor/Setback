@@ -15,6 +15,7 @@ public final class Setback extends JavaPlugin implements Listener{
     HashMap<Player, Location> lastMove = new HashMap<>();
     World worldToLagBack = Bukkit.getWorld(Objects.requireNonNull(this.getConfig().getString("world")));
     Permission bypassPermission = Bukkit.getPluginManager().getPermission(Objects.requireNonNull(this.getConfig().getString("bypass-permission")));
+    Permission staffPermission = Bukkit.getPluginManager().getPermission(Objects.requireNonNull(this.getConfig().getString("staff-permission")));
     Boolean reportStaff = this.getConfig().getBoolean("report-staff");
     Boolean reportPlayer = this.getConfig().getBoolean("report-player");
 
@@ -48,7 +49,7 @@ public final class Setback extends JavaPlugin implements Listener{
                             if (e.getBlock().getType().isSolid()) {
                                 p.teleport(lastMove.get(p));
                                 for (Player lp : Bukkit.getServer().getOnlinePlayers()) {
-                                    if (lp.hasPermission("setback.info")) {
+                                    if (lp.hasPermission(staffPermission)) {
                                         if (reportStaff)
                                             lp.sendMessage(ChatColor.GREEN + "Setback executed on " + ChatColor.YELLOW + e.getPlayer().getName() + ChatColor.GREEN + " in " + p.getWorld().getName());
                                         if (reportPlayer)
@@ -74,7 +75,7 @@ public final class Setback extends JavaPlugin implements Listener{
                         if (Math.floor(e.getBlock().getZ()) == (int) Math.floor(e.getPlayer().getLocation().getZ())) {
                             e.getPlayer().teleport(lastMove.get(p));
                             for (Player lp : Bukkit.getOnlinePlayers()) {
-                                if (lp.hasPermission("setback.info")) {
+                                if (lp.hasPermission(staffPermission)) {
                                     if (reportStaff)
                                         lp.sendMessage(ChatColor.GREEN + "Setback executed on " + ChatColor.YELLOW + e.getPlayer().getName() + ChatColor.GREEN + " in " + p.getWorld().getName());
                                     if (reportPlayer)

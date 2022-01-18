@@ -1,8 +1,9 @@
 # World to disable build at:
 world: parkournew
 
-# Permission for bypass:
+# Permissions:
 bypass-permission: setback.bypass
+staff-permission: setback.staff
 
 # Chat Messages:
 report-staff: true
