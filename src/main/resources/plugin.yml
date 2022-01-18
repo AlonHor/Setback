@@ -1,0 +1,6 @@
+name: Setback
+version: '${project.version}'
+main: me.alon.setback.Setback
+api-version: 1.18
+authors: [ Alon ]
+description: Anti-Glitch Setback Plugin!
